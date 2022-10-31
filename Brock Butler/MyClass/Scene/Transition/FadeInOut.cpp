@@ -19,6 +19,7 @@ bool FadeInOut::UpdateTransition(const float& delta)
 void FadeInOut::DrawOwnScreen()
 {
 	SetDrawScreen(screenID_);
+	ClearDrawScreen();
 	int alpha = static_cast<int>(EIGHTBITS_NUM_F * count_ / (limitTime_ / 2.0));
 	if (limitTime_ / 2.0 > count_)
 	{

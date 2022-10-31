@@ -132,6 +132,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="MyClass\Scene\GameScene.cpp" />
+    <ClCompile Include="MyClass\Game\Field\BattleField.cpp" />
     <ClCompile Include="MyClass\Input\INPUT_ID.cpp" />
     <ClCompile Include="MyClass\Input\Controller.cpp" />
     <ClCompile Include="main.cpp" />
@@ -147,10 +149,13 @@
     <ClCompile Include="MyClass\Scene\Transition\Slide.cpp" />
     <ClCompile Include="MyClass\Scene\Transition\TransitionScene.cpp" />
     <ClCompile Include="MyClass\Scene\TitleScene.cpp" />
+    <ClCompile Include="MyClass\Game\Field\SquareField.cpp" />
     <ClCompile Include="_debug\_DebugConOut.cpp" />
     <ClCompile Include="_debug\_DebugDispOut.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="MyClass\Scene\GameScene.h" />
+    <ClInclude Include="MyClass\Game\Field\BattleField.h" />
     <ClInclude Include="MyClass\Input\INPUT_ID.h" />
     <ClInclude Include="MyClass\Input\Controller.h" />
     <ClInclude Include="MyClass\common\DHUtility.h" />
@@ -167,6 +172,7 @@
     <ClInclude Include="MyClass\Scene\Transition\Slide.h" />
     <ClInclude Include="MyClass\Scene\Transition\TransitionScene.h" />
     <ClInclude Include="MyClass\Scene\TitleScene.h" />
+    <ClInclude Include="MyClass\Game\Field\SquareField.h" />
     <ClInclude Include="_debug\_DebugConOut.h" />
     <ClInclude Include="_debug\_DebugDispOut.h" />
   </ItemGroup>

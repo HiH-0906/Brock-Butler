@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 
+class TimeKeeper;
 class BaseScene;
 
 class SceneManager
@@ -12,6 +13,8 @@ public:
 		return s_Instance_;
 	}
 	void Run(void);
+
+	const float& GetDelta(void);
 
 	/// <summary>
 	/// ŒÄ‚Ño‚µ‚ÅƒQ[ƒ€I—¹
@@ -28,6 +31,7 @@ private:
 
 	bool isGameRun_;
 
+	std::unique_ptr<TimeKeeper> timeKeeper_;
 	std::unique_ptr<BaseScene> scene_;
 };
 

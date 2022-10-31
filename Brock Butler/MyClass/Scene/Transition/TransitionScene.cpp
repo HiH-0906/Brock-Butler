@@ -1,6 +1,8 @@
 #include <DxLib.h>
 #include "TransitionScene.h"
+
 #include "../../Manager/SceneManager.h"
+
 
 TransitionScene::TransitionScene(std::unique_ptr<BaseScene> beforScene, std::unique_ptr<BaseScene> afterScene)
 {
@@ -22,7 +24,7 @@ bool TransitionScene::Init(void)
 
 std::unique_ptr<BaseScene> TransitionScene::Update(std::unique_ptr<BaseScene> ownScene)
 {
-	if (UpdateTransition(0.0f))
+	if (UpdateTransition(SceneManager::GetInstance().GetDelta()))
 	{
 		return std::move(afterScene_);
 	}

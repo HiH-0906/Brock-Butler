@@ -4,6 +4,7 @@
 #include "SceneManager.h"
 
 #include "../common/DHUtility.h"
+#include "../common/TimeKeeper.h"
 
 #include "../Scene/BaseScene.h"
 #include "../Scene/TitleScene.h"
@@ -14,8 +15,8 @@
 
 namespace
 {
-	constexpr int screenSizeX = 1280;
-	constexpr int screenSizeY = 720;
+	constexpr int screenSizeX = 1920;
+	constexpr int screenSizeY = 1080;
 }
 
 void SceneManager::Run(void)
@@ -29,11 +30,12 @@ void SceneManager::Run(void)
 
 	_dbgSetup(screenSizeX, screenSizeY, 255);
 
-	while (!ProcessMessage() && isGameRun_)
+	while (!ProcessMessage() && isGameRun_ && !CheckHitKey(KEY_INPUT_ESCAPE))
 	{
 		ClsDrawScreen();
 		_dbgStartDraw();
 	
+		timeKeeper_->TimeUpdate();
 
 		scene_ = scene_->Update(std::move(scene_));
 
@@ -55,6 +57,11 @@ void SceneManager::Run(void)
 	DxLib_End();
 }
 
+const float& SceneManager::GetDelta(void)
+{
+	return timeKeeper_->GetDelta();
+}
+
 void SceneManager::GameEnd(void)
 {
 	isGameRun_ = false;
@@ -70,6 +77,7 @@ SceneManager::~SceneManager() = default;
 
 bool SceneManager::SystemInit(void)
 {
+	SetAlwaysRunFlag(true);
 	SetOutApplicationLogValidFlag(false);
 	SetGraphMode(screenSizeX, screenSizeY, 32);
 	ChangeWindowMode(true);
@@ -82,6 +90,8 @@ bool SceneManager::SystemInit(void)
 		assert(!"DxLibInité∏îs");
 		return false;
 	}
+
+	timeKeeper_ = std::make_unique<TimeKeeper>();
 
     return true;
 }
