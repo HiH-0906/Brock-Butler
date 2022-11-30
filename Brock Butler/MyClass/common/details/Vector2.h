@@ -1,6 +1,7 @@
 #include <cassert>
 #include <cmath>
 #include <numeric>
+#include <limits>
 #include "..\Vector2.h"
 
 

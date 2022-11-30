@@ -1,4 +1,6 @@
 #pragma once
+#include <memory>
+
 #include "BattleField.h"
 
 
@@ -22,6 +24,8 @@ private:
 
 	bool CheckGrid(const Vector2Int& grid)override;
 
+	BLOCK_TYPE CheckWinner()override;
+
+
 	Vector2Int gridSize_;
 };
-

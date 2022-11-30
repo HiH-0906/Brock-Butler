@@ -49,6 +49,9 @@ bool SquareField::Init(void)
 		blockData_.emplace_back(tmp);
 	}
 
+	blockData_[4][GRID_SIZE_Y - 3] = BLOCK_TYPE::SPECIAL_RED;
+	blockData_[4][3] = BLOCK_TYPE::SPECIAL_BLUE;
+
 	screenID_ = MakeScreen(BlockSize_X * GRID_SIZE_X, BlockSize_Y * GRID_SIZE_Y, true);
 
 	return true;
@@ -120,6 +123,10 @@ Vector2Int SquareField::Pos2Grid(const Vector2Int& mPos)
 {
 	
 	Vector2Int pos = mPos - pos_;
+	if (pos.x < 0 || pos.y < 0)
+	{
+		return Vector2Int{ -1,-1 };
+	}
 	Vector2Int grid = pos / Vector2Int{ BlockSize_X,BlockSize_Y };
 
 	return grid;
@@ -130,7 +137,44 @@ bool SquareField::CheckGrid(const Vector2Int& grid)
 	if (grid.x < 0 || grid.x >= GRID_SIZE_X || grid.y < 0 || grid.y >= GRID_SIZE_Y)
 	{
 		// エリア範囲外
+		TRACE("エリア範囲外\n");
 		return false;
 	}
 	return true;
+}
+
+BLOCK_TYPE SquareField::CheckWinner()
+{
+	int red = 0;
+	int blue = 0;
+	for (int x = 0; x < GRID_SIZE_X; x++)
+	{
+		for (int y = 0; y < GRID_SIZE_Y; y++)
+		{
+			if (blockData_[x][y] == BLOCK_TYPE::RED)
+			{
+				red++;
+			}
+			else if (blockData_[x][y] == BLOCK_TYPE::BLUE)
+			{
+				blue++;
+			}
+			else
+			{
+
+			}
+		}
+	}
+	if (red > blue)
+	{
+		return BLOCK_TYPE::RED;
+	}
+	else if (red < blue)
+	{
+		return BLOCK_TYPE::BLUE;
+	}
+	else
+	{
+		return BLOCK_TYPE::NON;
+	}
 }

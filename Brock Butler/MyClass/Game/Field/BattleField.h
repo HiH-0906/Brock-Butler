@@ -4,16 +4,7 @@
 
 #include "../../common/Vector2.h"
 
-
-enum class BLOCK_TYPE
-{
-	NON,
-	RED,
-	BLUE,
-	SPECIAL_RED,
-	SPECIAL_BLUE,
-	STONE,
-};
+#include "../Card/BLOCK_TYPE.h"
 
 class BattleField
 {
@@ -42,11 +33,6 @@ public:
 	/// <returns>true:設置完了</returns>
 	virtual bool PutBlock(const Vector2Int& mPos,BLOCK_TYPE type) = 0;
 
-	const int BlockSize_X = 32;
-	const int BlockSize_Y = 32;
-private:
-
-protected:
 	/// <summary>
 	/// 渡された座標を各フィールドのマス目へ変換する
 	/// </summary>
@@ -60,6 +46,14 @@ protected:
 	/// <param name="grid">マス目</param>
 	/// <returns>true:有効</returns>
 	virtual bool CheckGrid(const Vector2Int& grid) = 0;
+
+	virtual BLOCK_TYPE CheckWinner() = 0;
+
+	const int BlockSize_X = 32;
+	const int BlockSize_Y = 32;
+private:
+
+protected:
 	
 	Vector2Int pos_;
 	Vector2Int size_;

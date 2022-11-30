@@ -41,7 +41,7 @@ void SceneManager::Run(void)
 
 		scene_->DrawOwnScreen();
 #ifdef _DEBUG
-		if (CheckHitKey(KEY_INPUT_1))
+		if (CheckHitKey(KEY_INPUT_P))
 		{
 			SceneManager::GetInstance().GameEnd();
 		}
